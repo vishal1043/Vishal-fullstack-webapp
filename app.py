@@ -262,4 +262,6 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))  # Render sets PORT env var
+    app.run(host="0.0.0.0", port=port, debug=False)
+
