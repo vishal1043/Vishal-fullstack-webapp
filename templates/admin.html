@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">Admin Dashboard</h1>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="projects-tab" data-bs-toggle="tab" data-bs-target="#projectsTab" type="button" role="tab">
+          Projects
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="clients-tab" data-bs-toggle="tab" data-bs-target="#clientsTab" type="button" role="tab">
+          Clients
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="contacts-tab" data-bs-toggle="tab" data-bs-target="#contactsTab" type="button" role="tab">
+          Contact Responses
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="subs-tab" data-bs-toggle="tab" data-bs-target="#subsTab" type="button" role="tab">
+          Subscribers
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="adminTabsContent">
+
+      <!-- PROJECTS TAB -->
+      <div class="tab-pane fade show active" id="projectsTab" role="tabpanel">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Add Project</h5>
+                <form action="{{ url_for('add_project') }}" method="post">
+                  <div class="mb-3">
+                    <label class="form-label">Image URL</label>
+                    <input type="url" name="image_url" class="form-control" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Project Name</label>
+                    <input type="text" name="name" class="form-control" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="3" required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">Add Project</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-8">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title mb-3">All Projects</h5>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle">
+                    <thead>
+                      <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th style="width: 150px;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for p in projects %}
+                        <tr>
+                          <td><img src="{{ p.image_url }}" alt="" width="70" class="rounded"></td>
+                          <td>{{ p.name }}</td>
+                          <td>{{ p.description }}</td>
+                          <td>
+                            <a href="{{ url_for('edit_project', project_id=p.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                            <form action="{{ url_for('delete_project', project_id=p.id) }}" method="post" class="d-inline">
+                              <button type="submit" class="btn btn-sm btn-outline-danger"
+                                      onclick="return confirm('Delete this project?');">
+                                Delete
+                              </button>
+                            </form>
+                          </td>
+                        </tr>
+                      {% else %}
+                        <tr><td colspan="4" class="text-muted">No projects yet.</td></tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLIENTS TAB -->
+      <div class="tab-pane fade" id="clientsTab" role="tabpanel">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Add Client</h5>
+                <form action="{{ url_for('add_client') }}" method="post">
+                  <div class="mb-3">
+                    <label class="form-label">Image URL</label>
+                    <input type="url" name="image_url" class="form-control" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="3" required></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Designation</label>
+                    <input type="text" name="designation" class="form-control" placeholder="CEO, Developer..." required>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">Add Client</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-8">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title mb-3">All Clients</h5>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle">
+                    <thead>
+                      <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Designation</th>
+                        <th style="width: 150px;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for c in clients %}
+                        <tr>
+                          <td><img src="{{ c.image_url }}" alt="" width="60" class="rounded-circle"></td>
+                          <td>{{ c.name }}</td>
+                          <td>{{ c.description }}</td>
+                          <td>{{ c.designation }}</td>
+                          <td>
+                            <a href="{{ url_for('edit_client', client_id=c.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                            <form action="{{ url_for('delete_client', client_id=c.id) }}" method="post" class="d-inline">
+                              <button type="submit" class="btn btn-sm btn-outline-danger"
+                                      onclick="return confirm('Delete this client?');">
+                                Delete
+                              </button>
+                            </form>
+                          </td>
+                        </tr>
+                      {% else %}
+                        <tr><td colspan="5" class="text-muted">No clients yet.</td></tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACTS TAB -->
+      <div class="tab-pane fade" id="contactsTab" role="tabpanel">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Contact Form Responses</h5>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>City</th>
+                    <th>Submitted At</th>
+                    <th style="width: 150px;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for ct in contacts %}
+                    <tr>
+                      <td>{{ ct.full_name }}</td>
+                      <td>{{ ct.email }}</td>
+                      <td>{{ ct.mobile }}</td>
+                      <td>{{ ct.city }}</td>
+                      <td>{{ ct.created_at }}</td>
+                      <td>
+                        <a href="{{ url_for('edit_contact', contact_id=ct.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <form action="{{ url_for('delete_contact', contact_id=ct.id) }}" method="post" class="d-inline">
+                          <button type="submit" class="btn btn-sm btn-outline-danger"
+                                  onclick="return confirm('Delete this contact response?');">
+                            Delete
+                          </button>
+                        </form>
+                      </td>
+                    </tr>
+                  {% else %}
+                    <tr><td colspan="6" class="text-muted">No contact responses yet.</td></tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBSCRIBERS TAB -->
+      <div class="tab-pane fade" id="subsTab" role="tabpanel">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Subscribed Emails</h5>
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th>Email</th>
+                    <th>Subscribed At</th>
+                    <th style="width: 150px;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for s in subscribers %}
+                    <tr>
+                      <td>{{ s.email }}</td>
+                      <td>{{ s.created_at }}</td>
+                      <td>
+                        <a href="{{ url_for('edit_subscriber', subscriber_id=s.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <form action="{{ url_for('delete_subscriber', subscriber_id=s.id) }}" method="post" class="d-inline">
+                          <button type="submit" class="btn btn-sm btn-outline-danger"
+                                  onclick="return confirm('Delete this subscriber?');">
+                            Delete
+                          </button>
+                        </form>
+                      </td>
+                    </tr>
+                  {% else %}
+                    <tr><td colspan="3" class="text-muted">No subscribers yet.</td></tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- tab-content -->
+  </div>
+</section>
+{% endblock %}

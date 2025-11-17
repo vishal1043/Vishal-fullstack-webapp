@@ -1,0 +1,201 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* HERO SECTION */
+
+.hero-section {
+  background: radial-gradient(circle at top left, #1d4ed8 0, #111827 40%, #020617 100%);
+  color: #f9fafb;
+}
+
+.hero-image {
+  max-height: 380px;
+  object-fit: cover;
+}
+
+.hero-text {
+  color: #14e96d !important;
+}
+
+/* Gradient text */
+
+.text-gradient {
+  background: linear-gradient(90deg, #38bdf8, #22c55e, #eab308);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 3D Buttons */
+
+.btn-3d {
+  position: relative;
+  font-weight: 600;
+  box-shadow: 0 8px 0 #1d4ed8;
+  transform: translateY(0);
+  transition: transform 0.15s ease, box-shadow 0.05s ease, background-color 0.15s ease;
+}
+
+.btn-3d:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 0 #1e40af;
+}
+
+.btn-3d:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 0 #1e40af;
+}
+
+.btn-3d-outline {
+  font-weight: 600;
+  border-width: 2px;
+  color: #e5e7eb;
+  border-color: #38bdf8;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-3d-outline:hover {
+  background-color: #38bdf8;
+  color: #0b1120;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(56, 189, 248, 0.4);
+}
+
+.btn-3d-outline:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(56, 189, 248, 0.3);
+}
+
+/* Stat cards in About */
+
+.stat-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+}
+
+/* Why Choose Us feature cards */
+
+.feature-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+}
+
+.icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(59, 130, 246, 0.2));
+  color: #2563eb;
+  font-size: 1.4rem;
+}
+
+/* Project + client cards */
+
+.project-card,
+.client-card {
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.project-card:hover,
+.client-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+}
+
+.client-avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+/* CONTACT CARD 3D EFFECT */
+
+.contact-card {
+  border-radius: 22px;
+  background: radial-gradient(circle at top left, #ffffff 0, #e5f0ff 45%, #dbeafe 100%);
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.3);
+}
+
+/* Inputs focus to match blue theme */
+
+.contact-card .form-control:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 0.18rem rgba(37, 99, 235, 0.25);
+}
+
+/* Label color to look cleaner */
+
+.contact-card .form-label {
+  font-weight: 500;
+  color: #1f2933;
+}
+
+
+/* NEWSLETTER CARD 3D STYLE */
+.newsletter-card {
+  background: linear-gradient(135deg, #ffffff, #f0f7ff);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15);
+  transition: all 0.2s ease;
+}
+
+.newsletter-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.25);
+}
+
+/* INPUT STYLE MATCHING THEME */
+.newsletter-input {
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 1rem;
+}
+
+.newsletter-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+}
+
+
+/* BUTTON STYLE */
+.newsletter-btn {
+  border-radius: 12px;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+
+/* Footer links */
+
+.footer-link {
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: #e5e7eb;
+  text-decoration: underline;
+}

@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+{% block title %}Home | IT solutions{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section id="home" class="hero-section py-5">
+  <div class="container">
+    <div class="row align-items-center gy-4">
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold mb-3">
+          We Build Modern <span class="text-gradient">Digital Experiences</span>
+        </h1>
+        <div class="subtitle-text">
+            <p class="lead hero-text mb-4">
+          From idea to deployment, we design and develop clean, fast and scalable web solutions for your business.
+        </p>
+        </div>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#projects" class="btn btn-primary btn-3d">View Projects</a>
+          <a href="#contact" class="btn btn-outline-light btn-3d-outline">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="col-lg-6 text-center">
+        <!-- Hero image (change src to your own image) -->
+        <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg"
+             alt="Team working"
+             class="img-fluid hero-image rounded-4 shadow-lg">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="py-5 bg-light">
+  <div class="container">
+    <div class="row gy-4 align-items-center">
+      <div class="col-lg-6">
+        <h2 class="mb-3">About Our Company</h2>
+        <p class="text-muted">
+          We are a passionate team of developers, designers and problem solvers focused on building
+          simple, user-friendly and performance-driven applications. Our goal is to understand your
+          business and turn your ideas into reliable digital products.
+        </p>
+        <p class="text-muted mb-0">
+          From landing pages and dashboards to full-stack platforms, we follow clean architecture,
+          reusable components and modern UI/UX practices to deliver long-term value.
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <div class="row g-3">
+          <div class="col-6">
+            <div class="stat-card">
+              <h3 class="mb-0">20+</h3>
+              <p class="text-muted mb-0 small">Completed Projects</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="stat-card">
+              <h3 class="mb-0">10+</h3>
+              <p class="text-muted mb-0 small">Happy Clients</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="stat-card">
+              <h3 class="mb-0">3+</h3>
+              <p class="text-muted mb-0 small">Years Experience</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="stat-card">
+              <h3 class="mb-0">100%</h3>
+              <p class="text-muted mb-0 small">On-time Delivery</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why-us" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2>Why Choose Us</h2>
+      <p class="text-muted mb-0">We combine clean design, strong engineering and clear communication.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feature-card h-100">
+          <div class="icon-circle mb-3">
+            <i class="bi bi-lightning-charge"></i>
+          </div>
+          <h5>Fast & Responsive</h5>
+          <p class="text-muted small mb-0">
+            Your website or app will load quickly and work smoothly on mobile, tablet and desktop devices.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="feature-card h-100">
+          <div class="icon-circle mb-3">
+            <i class="bi bi-shield-check"></i>
+          </div>
+          <h5>Clean & Secure Code</h5>
+          <p class="text-muted small mb-0">
+            We follow best practices, write readable code and keep security in mind at every stage.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="feature-card h-100">
+          <div class="icon-circle mb-3">
+            <i class="bi bi-people"></i>
+          </div>
+          <h5>Client-Centric Approach</h5>
+          <p class="text-muted small mb-0">
+            We stay in touch, share progress frequently and adapt quickly to your feedback and requirements.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR PROJECTS -->
+<section id="projects" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="mb-4">Our Projects</h2>
+    {% if projects|length == 0 %}
+      <p class="text-muted">No projects added yet.</p>
+    {% else %}
+      <div class="row g-4">
+        {% for project in projects %}
+          <div class="col-md-4">
+            <div class="card project-card h-100">
+              <img src="{{ project.image_url }}" class="card-img-top" alt="{{ project.name }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ project.name }}</h5>
+                <p class="card-text small text-muted">{{ project.description }}</p>
+                <button class="btn btn-outline-primary btn-sm" disabled>Read More</button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- HAPPY CLIENTS -->
+<section id="clients" class="py-5">
+  <div class="container">
+    <h2 class="mb-4">Happy Clients</h2>
+    {% if clients|length == 0 %}
+      <p class="text-muted">No clients added yet.</p>
+    {% else %}
+      <div class="row g-4">
+        {% for client in clients %}
+          <div class="col-md-4">
+            <div class="card client-card h-100 text-center">
+              <div class="card-body">
+                <img src="{{ client.image_url }}" class="rounded-circle mb-3 client-avatar" alt="{{ client.name }}">
+                <p class="fst-italic small text-muted mb-3">"{{ client.description }}"</p>
+                <h5 class="card-title mb-1">{{ client.name }}</h5>
+                <span class="badge bg-primary">{{ client.designation }}</span>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+
+<!-- CONTACT FORM -->
+<section id="contact" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="mb-4 text-center">Contact Us</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <form action="{{ url_for('submit_contact') }}" method="post"
+              class="card contact-card border-0 shadow-lg p-4 p-lg-5">
+          <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" name="fullName" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email Address</label>
+            <input type="email" name="email" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Mobile Number</label>
+            <input type="tel" name="mobile" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">City</label>
+            <input type="text" name="city" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-3d w-100">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- NEWSLETTER -->
+<section id="newsletter" class="py-5 bg-white">
+  <div class="container">
+    <h2 class="mb-3 text-center">Newsletter Subscription</h2>
+    <p class="text-muted mb-4 text-center">
+      Stay updated with our latest projects and announcements.
+    </p>
+
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <form action="{{ url_for('subscribe') }}" method="post"
+              class="newsletter-card shadow-lg p-4 rounded-4 d-flex gap-2">
+          
+          <input type="email" 
+                 name="email" 
+                 class="form-control form-control-lg newsletter-input"
+                 placeholder="Enter your email"
+                 required>
+
+          <button type="submit" class="btn btn-primary btn-3d newsletter-btn px-4">
+            Subscribe
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}IT Solutions{% endblock %}</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons (for nice icons in "Why choose us") -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">IT Solutions</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}#why-us">Why Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}#clients">Clients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin_panel') }}">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash messages -->
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, msg in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ msg }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Main content -->
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-5 pt-4 pb-3">
+        <div class="container">
+            <div class="row gy-3 align-items-center">
+                <div class="col-md-6">
+                    <h5 class="mb-2">IT Solutions</h5>
+                    <p class="mb-0 text-muted">
+                        Crafting modern digital products with clean design and solid engineering.
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="mb-2">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#about" class="footer-link">About</a></li>
+                        <li><a href="#why-us" class="footer-link">Why choose us</a></li>
+                        <li><a href="#projects" class="footer-link">Projects</a></li>
+                        <li><a href="#contact" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 text-md-end text-muted small">
+                    © {{ 2025 }} MyCompany<br>
+                    All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
